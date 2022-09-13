@@ -1,4 +1,7 @@
+//  require statement for the User and Thought models
 const { User, Thought } = require("../models");
+// require statement for apollo-server-express
+const { AuthenticationError } = require("apollo-server-express");
 
 const resolvers = {
   Query: {
