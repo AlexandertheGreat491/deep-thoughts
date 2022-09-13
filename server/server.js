@@ -6,6 +6,7 @@ const { authMiddleware } = require("./utils/auth");
 const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
+// ensures that every request performs an authentication check & the updated request object will be passed to the resolvers as the context
 const server = new ApolloServer({
   typeDefs,
   resolvers,
