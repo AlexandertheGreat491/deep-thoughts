@@ -26,13 +26,6 @@ const typeDefs = gql`
     username: String
   }
 
-  type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
-  }
-
   type Auth {
     token: ID!
     user: User
@@ -56,3 +49,4 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
