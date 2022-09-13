@@ -1,4 +1,8 @@
 import React from "react";
+// ApolloProvider a React component used to provide data to all other components
+// ApolloClient a constructor function helps initialize connection to the GraphQL API server
+// InMemoryCache enables the Apollo Client instance to cache API response data to perform requests more efficietly
+// createHttpLink controls how the Apollo Client makes a request.
 import {
   ApolloProvider,
   ApolloClient,
