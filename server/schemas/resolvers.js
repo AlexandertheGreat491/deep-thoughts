@@ -2,12 +2,14 @@ const { User, Thought } = require('../models');
 
 const resolvers = {
   Query: {
+    // get all users
     users: async () => {
       return User.find()
         .select('-__v -password')
         .populate('thoughts')
         .populate('friends');
     },
+    // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
