@@ -1,16 +1,15 @@
-const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const path = require('path');
 
-const { typeDefs, resolvers } = require("./schemas");
-const { authMiddleware } = require("./utils/auth");
-const db = require("./config/connection");
+const { typeDefs, resolvers } = require('./schemas');
+const { authMiddleware } = require('./utils/auth');
+const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
-// ensures that every request performs an authentication check & the updated request object will be passed to the resolvers as the context
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  context: authMiddleware
+  resolvers
 });
 
 const app = express();
@@ -22,16 +21,14 @@ app.use(express.json());
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
-
-  db.once("open", () => {
+  
+  db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
-      console.log(
-        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
-      );
-    });
-  });
-};
-
-// Call the async function to start the server
-startApolloServer(typeDefs, resolvers);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    })
+  })
+  };
+  
+  // Call the async function to start the server
+  startApolloServer(typeDefs, resolvers);
