@@ -2,6 +2,8 @@
 const { User, Thought } = require("../models");
 // require statement for apollo-server-express
 const { AuthenticationError } = require("apollo-server-express");
+// imports the signToken() function
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -34,17 +36,17 @@ const resolvers = {
 
       return user;
     },
-    login: async (parent, {email, password}) => {
-      const user = await User.findOne({email});
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect crendentials');
+        throw new AuthenticationError("Incorrect crendentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       return user;
