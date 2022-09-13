@@ -28,6 +28,14 @@ const resolvers = {
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
     },
+    me: async (parent, args) => {
+      const userData = await User.findOne({})
+      .select('-_v -password')
+      .populate('thoughts')
+      .populate('friends');
+
+      return userData;
+    },
   },
   // resolver for login() and addUser() mutations
   Mutation: {
