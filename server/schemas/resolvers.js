@@ -28,14 +28,18 @@ const resolvers = {
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
     },
-    me: async (parent, args) => {
-      const userData = await User.findOne({})
-      .select('-_v -password')
-      .populate('thoughts')
-      .populate('friends');
-
-      return userData;
-    },
+    me: async (parent, args, context) => {
+      if (context.user){
+        const userData = await User.findOne({})
+        .select('-_v -password')
+        .populate('thoughts')
+        .populate('friends');
+  
+        return userData;
+      }
+      throw new AuthenticationError('Not logged in');
+      }
+      
   },
   // resolver for login() and addUser() mutations
   Mutation: {
