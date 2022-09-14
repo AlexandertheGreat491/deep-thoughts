@@ -1,20 +1,20 @@
 import React from 'react';
-// imports the useParams React Hook
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+import ReactionList from '../components/ReactionList';
+
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHT } from '../utils/queries';
 
-const SingleThought = props => {
-  
-  const {id: thoughtId} = useParams();
-  console.log(thoughtId);
+const SingleThought = (props) => {
+  const { id: thoughtId } = useParams();
 
   const { loading, data } = useQuery(QUERY_THOUGHT, {
-    variables: { id: thoughtId }
+    variables: { id: thoughtId },
   });
-  
+
   const thought = data?.thought || {};
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -32,6 +32,10 @@ const SingleThought = props => {
           <p>{thought.thoughtText}</p>
         </div>
       </div>
+
+      {thought.reactionCount > 0 && (
+        <ReactionList reactions={thought.reactions} />
+      )}
     </div>
   );
 };

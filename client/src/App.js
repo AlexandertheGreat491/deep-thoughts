@@ -1,33 +1,24 @@
-import React from "react";
-
-// ApolloProvider a React component used to provide data to all other components
-// ApolloClient a constructor function helps initialize connection to the GraphQL API server
-// InMemoryCache enables the Apollo Client instance to cache API response data to perform requests more efficietly
-// createHttpLink controls how the Apollo Client makes a request.
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
-  ApolloProvider,
   ApolloClient,
   InMemoryCache,
+  ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-// imports the Header component
-import Header from "./components/Header";
-//imports the Footer component
-import Footer from "./components/Footer";
-// imports the Home.js
-import Home from "./pages/Home";
-// imports the react-router-dom
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// imports the logic from the pages directory
-import Login from "./pages/Login";
-import NoMatch from "./pages/NoMatch";
-import SingleThought from "./pages/SingleThought";
-import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
+} from '@apollo/client';
 
-// establishes connection to back-end server's /graphql endpoint
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+import Home from './pages/Home';
+import Login from './pages/Login';
+import NoMatch from './pages/NoMatch';
+import SingleThought from './pages/SingleThought';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup';
+
 const httpLink = createHttpLink({
-  url: "/graphql",
+  uri: '/graphql',
 });
 
 const client = new ApolloClient({
@@ -43,15 +34,30 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/profile">
-                <Route path=":username" element={<Profile />} />
-                <Route path="" element={<Profile />} />
-              </Route>
-              <Route path="/thought/:id" element={<SingleThought />} />
-              <Route path="*" element={<NoMatch />} />
+              <Route 
+                path="/" 
+                element={<Home />} 
+              />
+              <Route 
+                path="/login" 
+                element={<Login />} 
+              />
+              <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
+              <Route 
+                path="/profile" 
+                element={<Profile />} 
+              />
+              <Route 
+                path="/thought/:id" 
+                element={<SingleThought />} 
+              />
+              <Route 
+                path="*" 
+                element={<NoMatch />} 
+              />
             </Routes>
           </div>
           <Footer />
