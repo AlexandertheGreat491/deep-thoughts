@@ -1,4 +1,5 @@
 import React from 'react';
+// useQuery hook enables queries
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHTS } from '../utils/queries';
 
