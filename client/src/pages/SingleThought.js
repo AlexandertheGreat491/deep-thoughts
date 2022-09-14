@@ -1,4 +1,6 @@
 import React from 'react';
+// imports the useParams React Hook
+import {useParams} from 'react-router-dom';
 
 const SingleThought = props => {
   return (
