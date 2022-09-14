@@ -19,7 +19,7 @@ import Home from "./pages/Home";
 
 // establishes connection to back-end server's /graphql endpoint
 const httpLink = createHttpLink({
-  url: 'http://localhost:3001/graphql',
+  url: '/graphql',
 });
 
 const client = new ApolloClient({
