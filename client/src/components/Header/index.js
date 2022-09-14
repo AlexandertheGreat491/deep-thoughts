@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+// uses React Router's Link component to change the url but stay on the same page
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
