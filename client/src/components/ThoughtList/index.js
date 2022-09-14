@@ -1,4 +1,6 @@
 import React from "react";
+// imports the Link component
+import {Link} from 'react-router-dom';
 
 const ThoughtList = ({ thoughts, title }) => {
   if (!thoughts.length) {
