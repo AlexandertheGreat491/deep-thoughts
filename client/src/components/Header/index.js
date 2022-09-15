@@ -12,8 +12,19 @@ const Header = () => {
           <h1>Deep Thoughts</h1>
         </Link>
         <nav className="text-center">
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          {Auth.loggedIn() ? (
+            <>
+            <Link to="/profile">Me</Link>
+            <a href="/">
+              Logout
+            </a>
+            </>
+          ) : (
+            <>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+            </>
+          )}
         </nav>
       </div>
     </header>
