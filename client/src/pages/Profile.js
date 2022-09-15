@@ -1,12 +1,17 @@
 import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-
+// imports the ThoughtList component
 import ThoughtList from '../components/ThoughtList';
+// imports the FriendList component
 import FriendList from '../components/FriendList';
-
-import { useQuery } from '@apollo/client';
+//imports the useQuery & useMutation hooks
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
+// imports AuthorizeService
 import Auth from '../utils/auth';
+// imports ADD_FRIEND mutation
+import {ADD_FRIEND} from '../utils/mutations';
+
 
 const Profile = (props) => {
   const { username: userParam } = useParams();
