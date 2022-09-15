@@ -1,6 +1,8 @@
 import React from "react";
 // uses React Router's Link component to change the url but stay on the same page
 import { Link } from "react-router-dom";
+// imports AuthService functionality
+import Auth from '../../utils/auth';
 
 const Header = () => {
   return (
