@@ -21,6 +21,7 @@ const Login = (props) => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     // block and handle errors
     try {
       const { data } = await login({
@@ -67,6 +68,7 @@ const Login = (props) => {
                 Submit
               </button>
             </form>
+            {error && <div>Login failed</div>}
           </div>
         </div>
       </div>
