@@ -1,8 +1,10 @@
-import React from 'react';
-import ThoughtList from '../components/ThoughtList';
+import React from "react";
+import ThoughtList from "../components/ThoughtList";
 
-import { useQuery } from '@apollo/client';
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_THOUGHTS } from "../utils/queries";
+import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
+import Auth from "../utils/auth";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
