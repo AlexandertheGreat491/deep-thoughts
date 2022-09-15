@@ -4,6 +4,8 @@ import { Navigate, useParams } from "react-router-dom";
 import ThoughtList from "../components/ThoughtList";
 // imports the FriendList component
 import FriendList from "../components/FriendList";
+// imports the ThoughtForm component
+import ThoughtForm from '../components/ThoughtForm';
 //imports the useQuery & useMutation hooks
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
