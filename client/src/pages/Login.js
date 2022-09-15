@@ -21,10 +21,10 @@ const Login = (props) => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    // block and handle errors
     try {
-      const {data} = await login({
-        variables: {...formState}
+      const { data } = await login({
+        variables: { ...formState },
       });
       console.log(data);
     } catch (e) {
