@@ -1,34 +1,28 @@
-import React from "react";
-import { Navigate, useParams } from "react-router-dom";
-// imports the ThoughtList component
-import ThoughtList from "../components/ThoughtList";
-// imports the FriendList component
-import FriendList from "../components/FriendList";
-// imports the ThoughtForm component
+import React from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+
 import ThoughtForm from '../components/ThoughtForm';
-//imports the useQuery & useMutation hooks
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER, QUERY_ME } from "../utils/queries";
-// imports AuthorizeService
-import Auth from "../utils/auth";
-// imports ADD_FRIEND mutation
-import { ADD_FRIEND } from "../utils/mutations";
+import ThoughtList from '../components/ThoughtList';
+import FriendList from '../components/FriendList';
+
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { ADD_FRIEND } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Profile = (props) => {
   const { username: userParam } = useParams();
 
+  const [addFriend] = useMutation(ADD_FRIEND);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
   const user = data?.me || data?.user || {};
 
-  // destructures the mutation function from ADD_FRIEND
-  const [addFriend] = useMutation(ADD_FRIEND);
-
   // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/profile:username" />;
   }
 
   if (loading) {
@@ -47,19 +41,20 @@ const Profile = (props) => {
   const handleClick = async () => {
     try {
       await addFriend({
-        variables: {id: user._id}
+        variables: { id: user._id },
       });
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   return (
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Viewing {userParam ? `${user.username}'s` : "your"} profile.
+          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
         </h2>
+
         {userParam && (
           <button className="btn ml-auto" onClick={handleClick}>
             Add Friend
@@ -83,6 +78,7 @@ const Profile = (props) => {
           />
         </div>
       </div>
+      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
     </div>
   );
 };
