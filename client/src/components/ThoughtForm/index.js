@@ -84,3 +84,4 @@ const ThoughtForm = () => {
 };
 
 export default ThoughtForm;
+
