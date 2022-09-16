@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <main>
       <div className="flex-row justify-space-between">
-          {loggedIn && (
+          {loggedIn && 'col-lg-8' (
             <div className="col-12 mb-3">
               <ThoughtForm />
             </div>
